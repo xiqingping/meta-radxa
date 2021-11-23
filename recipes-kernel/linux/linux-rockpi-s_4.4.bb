@@ -1,5 +1,7 @@
 DESCRIPTION = "Linux kernel for RockPi-S"
 
+inherit kernel
+inherit pythonnative
 require recipes-kernel/linux/linux-yocto.inc
 
 # We need mkimage for the overlays
@@ -27,6 +29,13 @@ deltask kernel_configme
 
 do_compile_append() {
 	oe_runmake dtbs
+}
+
+# Make sure we use /usr/bin/env ${PYTHON_PN} for scripts
+do_patch_append() {
+	for s in `grep -rIl python ${S}/scripts`; do
+		sed -i -e '1s|^#!.*python[23]*|#!/usr/bin/env ${PYTHON_PN}|' $s
+	done
 }
 
 do_deploy_append() {

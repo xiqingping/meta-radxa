@@ -9,6 +9,7 @@ RDEPENDS_packagegroup-radxa-console = "\
     alsa-utils-aplay \
     coreutils \
     cpufrequtils \
+    gnupg \
     hostapd \
     htop \
     iptables \

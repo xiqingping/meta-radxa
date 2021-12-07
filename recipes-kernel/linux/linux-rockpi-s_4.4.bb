@@ -1,7 +1,7 @@
 DESCRIPTION = "Linux kernel for RockPi-S"
 
 inherit kernel
-inherit pythonnative
+inherit python3native
 require recipes-kernel/linux/linux-yocto.inc
 
 # We need mkimage for the overlays

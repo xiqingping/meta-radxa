@@ -15,6 +15,8 @@ inherit allarch deploy
 
 do_install() {
 	install -d ${D}/system/etc/firmware/
+	install -m 0644 ${S}/firmware/broadcom/AP6212A1/*/* \
+		-t ${D}/system/etc/firmware/
 	install -m 0644 ${S}/firmware/broadcom/AP6236/*/* \
 		-t ${D}/system/etc/firmware/
 	install -m 0644 ${S}/firmware/broadcom/AP6255/*/* \
@@ -32,6 +34,8 @@ do_install() {
 }
 
 PACKAGES =+ " \
+	${PN}-ap6212a1-wifi \
+	${PN}-ap6212a1-bt \
 	${PN}-ap6236-wifi \
 	${PN}-ap6236-bt \
 	${PN}-ap6255-wifi \
@@ -45,6 +49,15 @@ PACKAGES =+ " \
 	${PN}-rtl8723ds-bt \
 	${PN}-rtl8723du-bt \
 	${PN}-rtl8821cu-bt \
+"
+
+FILES_${PN}-ap6212a1-wifi = " \
+	system/etc/firmware/fw_bcm43438a1.bin \
+	system/etc/firmware/nvram_ap6212a.txt \
+"
+
+FILES_${PN}-ap6212a1-bt = " \
+	system/etc/firmware/bcm43438a1.hcd \
 "
 
 FILES_${PN}-ap6236-wifi = " \

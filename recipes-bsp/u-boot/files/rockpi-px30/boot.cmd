@@ -19,7 +19,7 @@ if test -e ${devtype} ${devnum}:1 ${prefix}uEnv.txt; then
 	env import -t ${load_addr} ${filesize}
 fi
 
-setenv bootargs "console=tty1 console=${console} rw root=PARTUUID=${rootuuid} rootfstype=${rootfstype} init=/sbin/init rootwait"
+setenv bootargs "console=tty1 console=${console} rw root=PARTUUID=${rootuuid} rootfstype=${rootfstype} init=/sbin/init rootwait ${extraargs}"
 
 if test "${docker_optimizations}" = "on"; then setenv bootargs "${bootargs} cgroup_enable=cpuset cgroup_memory=1 cgroup_enable=memory swapaccount=1"; fi
 

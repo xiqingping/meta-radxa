@@ -4,7 +4,7 @@ LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=47819091dc3777f6899ac4e6dbff2613"
 
 SRC_URI = "git://github.com/oblique/create_ap.git;branch=master;"
-SRCREV = "${AUTOREV}"
+SRCREV = "462c09fc88d9d6a6037e8f5b64f14492508bba90"
 
 SRC_URI[md5sum] = "dc6c5a027508ffa09d2c3c2ed152e14a"
 SRC_URI[sha256sum] = "d86f0d46f044bf0f2b76e8e90e02e4f778d4e873aec82cffa5914839eb356744"

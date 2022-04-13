@@ -1,0 +1,47 @@
+From 2e0aae30559d5fa62db485a6c84a5c099335b973 Mon Sep 17 00:00:00 2001
+From: Stephen <stephen@vamrs.com>
+Date: Wed, 16 Mar 2022 00:24:59 +0800
+Subject: [PATCH] to avoid warnings when compiling with GCC 8.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+In file included from scripts/kconfig/zconf.tab.c:2486:
+scripts/kconfig/confdata.c: In function ‘conf_write’:
+scripts/kconfig/confdata.c:771:22: warning: ‘%s’ directive writing likely 7 or more bytes into a region of size between 1 and 4097 [-Wformat-overflow=]
+  sprintf(newname, "%s%s", dirname, basename);
+                      ^~
+scripts/kconfig/confdata.c:771:19: note: assuming directive output of 7 bytes
+  sprintf(newname, "%s%s", dirname, basename);
+                   ^~~~~~
+scripts/kconfig/confdata.c:771:2: note: ‘sprintf’ output 1 or more bytes (assuming 4104) into a destination of size 4097
+  sprintf(newname, "%s%s", dirname, basename);
+  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+scripts/kconfig/confdata.c:774:23: warning: ‘.tmpconfig.’ directive writing 11 bytes into a region of size between 1 and 4097 [-Wformat-overflow=]
+   sprintf(tmpname, "%s.tmpconfig.%d", dirname, (int)getpid());
+                       ^~~~~~~~~~~
+scripts/kconfig/confdata.c:774:3: note: ‘sprintf’ output between 13 and 4119 bytes into a destination of size 4097
+   sprintf(tmpname, "%s.tmpconfig.%d", dirname, (int)getpid());
+   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Signed-off-by: Stephen <stephen@vamrs.com>
+---
+ scripts/kconfig/confdata.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/scripts/kconfig/confdata.c b/scripts/kconfig/confdata.c
+index 745cb93050e..ab424e60546 100644
+--- a/scripts/kconfig/confdata.c
++++ b/scripts/kconfig/confdata.c
+@@ -743,7 +743,7 @@ int conf_write(const char *name)
+ 	struct menu *menu;
+ 	const char *basename;
+ 	const char *str;
+-	char dirname[PATH_MAX+1], tmpname[PATH_MAX+1], newname[PATH_MAX+1];
++	char dirname[PATH_MAX+1], tmpname[PATH_MAX+22], newname[PATH_MAX+8];
+ 	char *env;
+ 
+ 	dirname[0] = 0;
+-- 
+2.29.0
+

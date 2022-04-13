@@ -7,7 +7,7 @@ LIC_FILES_CHKSUM = "file://LICENSE.TXT;md5=564e729dd65db6f65f911ce0cd340cf9"
 NO_GENERIC_LICENSE[BINARY] = "LICENSE.TXT"
 
 SRC_URI = "git://github.com/radxa/rkbin.git;branch=master;"
-SRCREV = "fb4ce829b87a9a5738ff6ebc9951768c86ad75c1"
+SRCREV = "530b61d0e59289d7a24c404faa7617fc87e14495"
 
 S = "${WORKDIR}/git"
 

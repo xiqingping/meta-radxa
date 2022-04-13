@@ -22,6 +22,7 @@ BL31_ELF = "radxa-binary/bl31.elf"
 TRUST_IMG = "trust.img"
 # Not from radxa-binary
 UBOOT_IMG = "u-boot.img"
+UBOOT_ITB = "u-boot.itb"
 
 GPTIMG_APPEND_px30 = "console=tty1 console=ttyS1,1500000n8 rw \
 	root=PARTUUID=b921b045-1d rootfstype=ext4 init=/sbin/init rootwait"
@@ -32,6 +33,8 @@ GPTIMG_APPEND_rk3328 = "console=tty1 console=ttyS2,1500000n8 rw \
 GPTIMG_APPEND_rk3399 = "console=tty1 console=ttyFIQ0,1500000n8 rw \
 	root=PARTUUID=b921b045-1d rootfstype=ext4 init=/sbin/init rootwait"
 GPTIMG_APPEND_rk3399pro = "console=tty1 console=ttyS2,1500000n8 rw \
+	root=PARTUUID=b921b045-1d rootfstype=ext4 init=/sbin/init rootwait"
+GPTIMG_APPEND_rk3566 = "console=tty1 console=ttyFIQ0,1500000n8 rw \
 	root=PARTUUID=b921b045-1d rootfstype=ext4 init=/sbin/init rootwait"
 
 # default partitions [in Sectors]
@@ -63,6 +66,7 @@ PER_CHIP_IMG_GENERATION_COMMAND_rk3308 = "generate_rk3308_loader_image"
 PER_CHIP_IMG_GENERATION_COMMAND_rk3328 = "generate_rk3328_loader_image"
 PER_CHIP_IMG_GENERATION_COMMAND_rk3399 = "generate_rk3399_loader_image"
 PER_CHIP_IMG_GENERATION_COMMAND_rk3399pro = "generate_rk3399pro_loader_image"
+PER_CHIP_IMG_GENERATION_COMMAND_rk3566 = "generate_rk3566_loader_image"
 
 IMAGE_CMD_rockchip-radxa-gpt-img () {
 	# Change to image directory
@@ -396,4 +400,17 @@ EOF
 	dd if=${DEPLOY_DIR_IMAGE}/${IDBLOADER} of=${GPTIMG} conv=notrunc,fsync seek=${LOADER1_START}
 	dd if=${DEPLOY_DIR_IMAGE}/${UBOOT_IMG} of=${GPTIMG} conv=notrunc,fsync seek=${LOADER2_START}
 	dd if=${DEPLOY_DIR_IMAGE}/${TRUST_IMG} of=${GPTIMG} conv=notrunc,fsync seek=${ATF_START}
+}
+
+generate_rk3566_loader_image () {
+	LOADER1_START=64
+	RESERVED1_START=$(expr ${LOADER1_START} + ${LOADER1_SIZE})
+	RESERVED2_START=$(expr ${RESERVED1_START} + ${RESERVED1_SIZE})
+	LOADER2_START=$(expr ${RESERVED2_START} + ${RESERVED2_SIZE})
+	ATF_START=$(expr ${LOADER2_START} + ${LOADER2_SIZE})
+	BOOT_START=$(expr ${ATF_START} + ${ATF_SIZE})
+	ROOTFS_START=$(expr ${BOOT_START} + ${BOOT_SIZE})
+
+	dd if=${DEPLOY_DIR_IMAGE}/${IDBLOADER} of=${GPTIMG} conv=notrunc,fsync seek=${LOADER1_START}
+	dd if=${DEPLOY_DIR_IMAGE}/${UBOOT_ITB} of=${GPTIMG} conv=notrunc,fsync seek=${LOADER2_START}
 }

@@ -2,7 +2,7 @@ require u-boot.inc
 
 HOMEPAGE = "https://github.com/radxa/u-boot"
 LICENSE = "GPLv2+"
-COMPATIBLE_MACHINE = "(px30|rk3036|rk3066|rk3188|rk3288|rk3328|rk3399|rk3308|rk3399pro)"
+COMPATIBLE_MACHINE = "(px30|rk3036|rk3066|rk3188|rk3288|rk3328|rk3399|rk3308|rk3399pro|rk3566)"
 SECTION = "bootloaders"
 DEPENDS = "dtc-native bc-native swig-native bison-native coreutils-native"
 
@@ -18,7 +18,7 @@ do_configure () {
         else
             oe_runmake -C ${S} O=${B} oldconfig
         fi
-	echo ${PWD}
+
         ${S}/scripts/kconfig/merge_config.sh -m .config ${@" ".join(find_cfgs(d))}
         cml1_do_configure
     fi

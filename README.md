@@ -47,6 +47,7 @@ The meta-radxa layer depends on:
 5) RockPi-N10
 6) RockPi-PX30
 7) RockPi-S
+8) Radxa-Zero
 
 ## Using the meta-radxa layer <a name="meta_radxa_usage"></a>
 
@@ -56,21 +57,24 @@ Fetch the source using the commands given below:
 
 <pre><code>~ $ mkdir yocto
 ~ $ cd yocto
-~/yocto $ git clone git://git.yoctoproject.org/poky -b dunfell
+~/yocto $ git clone --depth 1 git://git.yoctoproject.org/poky -b dunfell
 ~/yocto $ cd poky
-~/yocto/poky $ git clone git://git.openembedded.org/meta-openembedded.git -b dunfell
-~/yocto/poky $ git clone https://github.com/radxa/meta-radxa.git -b dunfell
-~/yocto.poky $ git clone https://github.com/YoeDistro/meta-python2.git -b dunfell
+~/yocto/poky $ git clone --depth 1 git://git.openembedded.org/meta-openembedded.git -b dunfell
+~/yocto/poky $ git clone --depth 1 https://github.com/radxa/meta-radxa.git -b dunfell
+~/yocto.poky $ git clone --depth 1 https://github.com/YoeDistro/meta-python2.git -b dunfell
 </code></pre>
 
 ### Step 2: Setting up the Environment <a name="setup"></a>
 
-<pre><code> ~/yocto/poky $ source oe-init-build-env
+<pre><code>~/yocto/poky $ source oe-init-build-env
 </code></pre>
 
-#### Step 3: Bblayers.conf Setup <a name="bblayers.conf_setup"></a>
+#### Step 3: bblayers.conf Setup <a name="bblayers.conf_setup"></a>
 
 * You can simply copy the bblayers.conf.sample present in meta-radxa/conf folder to the build/conf folder and rename it to bblayers.conf
+
+<pre><code>~/yocto/poky/build $ cp ../meta-radxa/conf/bblayers.conf.sample conf/bblayers.conf
+</code></pre>
 
 <div align="center"><b>OR</b></div>
 
@@ -89,9 +93,13 @@ Fetch the source using the commands given below:
   ${TOPDIR}/../meta-radxa \
 </code></pre>
 
-### Step 4: Local.conf Setup <a name="local.conf_setup"></a>
+### Step 4: local.conf Setup <a name="local.conf_setup"></a>
 
 * You can simply copy the local.conf.sample present in meta-radxa/conf folder to the build/conf folder and rename it to local.conf and uncomment the machine for which you want to build an image
+
+<pre><code>~/yocto/poky/build $ cp ../meta-radxa/conf/local.conf.sample conf/local.conf
+~/yocto/poky/build $ nano conf/local.conf
+</code></pre>
 
 <div align="center"><b>OR</b></div>
 
@@ -144,6 +152,7 @@ The Serial Console for RockPi-4, RockPi-E and RockPi-N10 is enabled on UART-2. T
 + RockPi-E Serial Console Setup (https://wiki.radxa.com/RockpiE/dev/serial-console)
 + RockPi-N10 Serial Console Setup (https://wiki.radxa.com/RockpiN10/dev/serial-console)
 + RockPi-S Serial Console Setup (https://wiki.radxa.com/RockpiS/dev/serial-console)
++ Radxa-Zero Serial Console Setup (https://wiki.radxa.com/Zero/dev/serial-console)
 
 ## Login Details <a name="login"></a>
 
@@ -322,6 +331,7 @@ hciconfig hci0 up
 + Added recipe for making desktop images
 + Added recipe for setting up BT firmware and driver at boot for Rockpi-4, RockPi-E, RockPi-N10 and RockPi-S
 + Added recipe for kernel-headers, file-system resize at boot, mraa and create-ap
++ Added board support for Radxa-Zero
 
 ## Contributing <a name="contributing"></a>
 

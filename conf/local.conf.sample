@@ -16,6 +16,7 @@
 #
 # You need to select a specific machine to target the build with.
 #MACHINE ?= "radxa-cm3-io-rk3566"
+#MACHINE ?= "radxa-zero-s905y2"
 #MACHINE ?= "rockpi-4a-rk3399"
 #MACHINE ?= "rockpi-4b-rk3399"
 #MACHINE ?= "rockpi-4c-rk3399"

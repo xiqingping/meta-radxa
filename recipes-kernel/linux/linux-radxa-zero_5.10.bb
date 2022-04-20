@@ -20,6 +20,8 @@ PV = "${LINUX_VERSION}"
 
 COMPATIBLE_MACHINE = "(s905y2)"
 
+KCONFIG_MODE = "--alldefconfig"
+
 # We need mkimage for the overlays
 DEPENDS += "u-boot-mkimage-radxa-native"
 

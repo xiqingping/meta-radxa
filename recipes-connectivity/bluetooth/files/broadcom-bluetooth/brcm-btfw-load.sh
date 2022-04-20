@@ -1,6 +1,6 @@
 #!/bin/sh
 
-FIRMWARE="/system/etc/firmware"
+FIRMWARE="/lib/firmware/brcm"
 
 DEVICE=$(cat /sys/bus/sdio/devices/$1/device)
 echo "DEVICE=$DEVICE"

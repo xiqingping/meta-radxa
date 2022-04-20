@@ -15,6 +15,10 @@ do_compile () {
 	# is built with target tools and thus cannot be executed on host.
 	sed -i "s/CONFIG_CMD_LICENSE=.*/# CONFIG_CMD_LICENSE is not set/" .config
 
+	# Fix build error when gcc >= 10
+	# Ref: https://lkml.org/lkml/2020/4/1/1206
+	sed -i "s/^YYLTYPE yylloc;$/extern YYLTYPE yylloc;/" scripts/dtc/dtc-lexer.l 
+
 	oe_runmake cross_tools NO_SDL=1
 }
 

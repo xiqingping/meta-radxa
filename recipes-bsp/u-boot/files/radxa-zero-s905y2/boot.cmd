@@ -6,7 +6,7 @@
 setenv load_addr "0x09000000"
 setenv overlay_error "false"
 # default values
-setenv overlay_prefix "amlogic"
+setenv overlay_prefix "meson"
 setenv verbosity "1"
 setenv console " "
 setenv rootfstype "ext4"

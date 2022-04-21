@@ -40,6 +40,15 @@ do_compile_append () {
 	fi
 }
 
+do_install_append() {
+	if [ -f "${WORKDIR}/boot.scr" ]; then
+		install -m 644 ${WORKDIR}/boot.scr ${D}/boot/
+	fi
+	if [ -f "${WORKDIR}/${MACHINE}/uEnv.txt" ]; then
+		install -m 644 ${WORKDIR}/${MACHINE}/uEnv.txt ${D}/boot/
+	fi
+}
+
 do_deploy_append() {
 	cp -a ${B}/tools/mkimage ${DEPLOY_DIR_IMAGE}
 	if [ -f "${WORKDIR}/${MACHINE}/uEnv.txt" ]; then
@@ -52,3 +61,9 @@ do_deploy_append() {
 		install -D -m 644 ${WORKDIR}/boot.cmd ${DEPLOYDIR}/
 	fi
 }
+
+PACKAGE_BEFORE_PN = "${PN}-scripts"
+FILES_${PN}-scripts = " \
+	/boot/boot.scr \
+	/boot/uEnv.txt \
+"

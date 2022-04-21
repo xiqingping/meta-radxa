@@ -6,7 +6,7 @@ SECTION = "kernel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://NOTICE;md5=9645f39e9db895a4aa6e02cb57294595"
 
-SRCREV = "0a1dabd4de17933841f5d9bea3f03158a5d59ee7"
+SRCREV = "d11062976fca36414946bd59b809a8e1b8dbaf91"
 SRC_URI = "git://github.com/radxa/rkwifibt.git;protocol=https"
 
 S = "${WORKDIR}/git"

@@ -29,7 +29,15 @@ do_compile_append() {
 	oe_runmake dtbs
 }
 
+do_install_append() {
+	install -d ${D}/boot/overlays
+	install -m 644 ${B}/arch/arm64/boot/dts/amlogic/overlay/* ${D}/boot/overlays
+}
+
 do_deploy_append() {
 	install -d ${DEPLOYDIR}/overlays
 	install -m 644 ${B}/arch/arm64/boot/dts/amlogic/overlay/* ${DEPLOYDIR}/overlays
 }
+
+PACKAGES += "${PN}-overlays"
+FILES_${PN}-overlays = "/boot/overlays/*"

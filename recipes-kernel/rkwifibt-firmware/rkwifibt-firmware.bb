@@ -6,7 +6,7 @@ SECTION = "kernel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://NOTICE;md5=9645f39e9db895a4aa6e02cb57294595"
 
-SRCREV = "d11062976fca36414946bd59b809a8e1b8dbaf91"
+SRCREV = "3277c78514fce8964c25172a5e8c7102bd0c17f6"
 SRC_URI = "git://github.com/radxa/rkwifibt.git;protocol=https"
 
 S = "${WORKDIR}/git"
@@ -17,18 +17,25 @@ do_install() {
 	install -d ${D}/lib/firmware/brcm/
 	install -m 0644 ${S}/firmware/broadcom/AW-NB197/bt/BCM4343A1_001.002.009.1008.1024.hcd \
 		${D}/lib/firmware/brcm/bcm43438a1.hcd
-	install -m 0644 ${S}/firmware/broadcom/AP6212A1/wifi/* \
-		-t ${D}/lib/firmware/brcm/
 	install -m 0644 ${S}/firmware/broadcom/AP6236/*/* \
 		-t ${D}/lib/firmware/brcm/
 	install -m 0644 ${S}/firmware/broadcom/AP6255/*/* \
 		-t ${D}/lib/firmware/brcm/
-	install -m 0644 ${S}/firmware/broadcom/AP6256/*/* \
+	install -m 0644 ${S}/firmware/broadcom/AP6256/bt/* \
 		-t ${D}/lib/firmware/brcm/
+	install -m 0644 ${S}/firmware/broadcom/AP6256/wifi/fw_bcm43456c5_ag.bin \
+		${D}/lib/firmware/brcm/brcmfmac43456-sdio.bin
+	install -m 0644 ${S}/firmware/broadcom/AP6256/wifi/nvram_ap6256.txt \
+		${D}/lib/firmware/brcm/brcmfmac43456-sdio.txt
 	install -m 0644 ${S}/firmware/broadcom/AP6356/*/* \
 		-t ${D}/lib/firmware/brcm/
 	install -m 0644 ${S}/firmware/broadcom/AP6398S/*/* \
 		-t ${D}/lib/firmware/brcm/
+
+	# let's use the firmware for AP6212 from Infineon / Cypress
+	install -d ${D}/lib/firmware/cypress/
+	install -m 0644 ${S}/firmware/cypress/wifi/* -t ${D}/lib/firmware/cypress/
+
 	install -d ${D}${base_libdir}/firmware/rtlbt/
 	install -m 0644 ${S}/realtek/RTL8723DS/* -t ${D}${base_libdir}/firmware/rtlbt/
 	install -m 0644 ${S}/realtek/RTL8723DU/* -t ${D}${base_libdir}/firmware/
@@ -54,8 +61,7 @@ PACKAGES =+ " \
 "
 
 FILES_${PN}-ap6212a1-wifi = " \
-	lib/firmware/brcm/fw_bcm43438a1.bin \
-	lib/firmware/brcm/nvram_ap6212a.txt \
+	lib/firmware/cypress/* \
 "
 
 FILES_${PN}-ap6212a1-bt = " \
@@ -82,9 +88,7 @@ FILES_${PN}-ap6255-bt = " \
 "
 
 FILES_${PN}-ap6256-wifi = " \
-	lib/firmware/brcm/fw_bcm43456c5_ag.bin \
-	lib/firmware/brcm/fw_bcm43456c5_ag_p2p.bin \
-	lib/firmware/brcm/nvram_ap6256.txt \
+	lib/firmware/brcm/brcmfmac43456-sdio* \
 "
 
 FILES_${PN}-ap6256-bt = " \

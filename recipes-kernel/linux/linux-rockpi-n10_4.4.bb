@@ -7,9 +7,7 @@ DEPENDS += "openssl-native u-boot-mkimage-radxa-native"
 
 SRC_URI = " \
 	git://github.com/radxa/kernel.git;branch=rk3399pro-toybrick-stable; \
-	file://0001-UPSTREAM-arm64-vdso-Define-vdso_-start-end-as-array.patch \
-	file://0001-Makefile-disable-gcc9-s-address-of-packed-member-war.patch \
-	file://0001-Fix-GCC-9-Wmissing-attributes-warnings-error.patch \
+	file://0002-Suppress-additional-warnings.patch \
 	file://brcmfmac.scc \
 "
 

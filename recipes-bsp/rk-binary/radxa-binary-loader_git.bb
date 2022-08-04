@@ -17,6 +17,7 @@ LOADER_rk3328 ?= "bin/rk33/rk3328_loader_ddr333_v1.16.250.bin"
 LOADER_rk3399 ?= "bin/rk33/rk3399_loader_v1.12.112.bin"
 LOADER_rk3399pro ?= "bin/rk33/rk3399pro_loader_v1.20.115.bin"
 LOADER_rk3566 ?= "bin/rk35/rk356x_spl_loader_ddr1056_v1.10.111.bin"
+LOADER_rk3568 ?= "bin/rk35/rk356x_spl_loader_ddr1056_v1.10.111.bin"
 
 MINILOADER_px30 ?= "bin/rk33/px30_miniloader_v1.20.bin"
 MINILOADER_rk3308 ?= "bin/rk33/rk3308_miniloader_emmc_port_support_sd_20190717.bin"
@@ -30,6 +31,7 @@ DDR_rk3328 ?= "bin/rk33/rk3328_ddr_333MHz_v1.16.bin"
 DDR_rk3399 ?= "bin/rk33/rk3399_ddr_800MHz_v1.20.bin"
 DDR_rk3399pro ?= "bin/rk33/rk3399_ddr_800MHz_v1.20.bin"
 DDR_rk3566 ?= "bin/rk35/rk3568_ddr_1056MHz_v1.10.bin"
+DDR_rk3568 ?= "bin/rk35/rk3568_ddr_1056MHz_v1.10.bin"
 
 BL31_px30 ?= "bin/rk33/px30_bl31_v1.18.elf"
 BL31_rk3308 ?= "bin/rk33/rk3308_bl31_v2.10.elf"
@@ -37,6 +39,7 @@ BL31_rk3328 ?= "bin/rk33/rk322xh_bl31_v1.42.elf"
 BL31_rk3399 ?= "bin/rk33/rk3399_bl31_v1.26.elf"
 BL31_rk3399pro ?= "bin/rk33/rk3399pro_bl31_v1.22.elf"
 BL31_rk3566 ?= "bin/rk35/rk3568_bl31_v1.32.elf"
+BL31_rk3568 ?= "bin/rk35/rk3568_bl31_v1.32.elf"
 
 inherit deploy
 

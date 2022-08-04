@@ -1,0 +1,12 @@
+Index: source/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
+===================================================================
+--- source.orig/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
++++ source/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
+@@ -1051,3 +1051,6 @@
+ 		};
+ 	};
+ };
++&fiq_debugger {
++    status = "okay";
++};
+\ No newline at end of file

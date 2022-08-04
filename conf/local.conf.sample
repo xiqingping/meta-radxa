@@ -24,6 +24,7 @@
 #MACHINE ?= "rockpi-n10-rk3399pro"
 #MACHINE ?= "rockpi-px30"
 #MACHINE ?= "rockpi-s-rk3308"
+#MACHINE ?= "rock-3a-rk3568"
 
 DISTRO ?= "poky"
 #

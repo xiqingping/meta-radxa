@@ -1,0 +1,41 @@
+Index: git/arch/arm/mach-rockchip/make_fit_args.sh
+===================================================================
+--- git.orig/arch/arm/mach-rockchip/make_fit_args.sh
++++ git/arch/arm/mach-rockchip/make_fit_args.sh
+@@ -5,7 +5,7 @@
+ # SPDX-License-Identifier: GPL-2.0
+ #
+ 
+-srctree=$PWD
++local_srctree=$PWD
+ 
+ function help()
+ {
+@@ -61,8 +61,8 @@ else
+ fi
+ 
+ # Base
+-DARM_BASE=`sed -n "/CONFIG_SYS_SDRAM_BASE=/s/CONFIG_SYS_SDRAM_BASE=//p" ${srctree}/include/autoconf.mk|tr -d '\r'`
+-UBOOT_LOAD_ADDR=`sed -n "/CONFIG_SYS_TEXT_BASE=/s/CONFIG_SYS_TEXT_BASE=//p" ${srctree}/include/autoconf.mk|tr -d '\r'`
++DARM_BASE=`sed -n "/CONFIG_SYS_SDRAM_BASE=/s/CONFIG_SYS_SDRAM_BASE=//p" ${local_srctree}/include/autoconf.mk|tr -d '\r'`
++UBOOT_LOAD_ADDR=`sed -n "/CONFIG_SYS_TEXT_BASE=/s/CONFIG_SYS_TEXT_BASE=//p" ${local_srctree}/include/autoconf.mk|tr -d '\r'`
+ if grep -q '^CONFIG_ARM64=y' .config ; then
+ 	ARCH="arm64"
+ else
+Index: git/arch/arm/mach-rockchip/make_fit_atf.sh
+===================================================================
+--- git.orig/arch/arm/mach-rockchip/make_fit_atf.sh
++++ git/arch/arm/mach-rockchip/make_fit_atf.sh
+@@ -6,10 +6,10 @@
+ #
+ 
+ # Process args and auto set variables
+-source ./${srctree}/arch/arm/mach-rockchip/make_fit_args.sh
++source ${srctree}/arch/arm/mach-rockchip/make_fit_args.sh
+ 
+ rm -f ${srctree}/*.digest ${srctree}/*.bin.gz ${srctree}/bl31_0x*.bin
+-${srctree}/arch/arm/mach-rockchip/decode_bl31.py
++python3 ${srctree}/arch/arm/mach-rockchip/decode_bl31.py
+ 
+ if [ "${COMPRESSION}" == "gzip" ]; then
+ 	SUFFIX=".gz"

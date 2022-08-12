@@ -12,8 +12,6 @@ SRC_URI = " \
 	file://${MACHINE}/0001-to-avoid-warnings-when-compiling-with-GCC-8.1.patch \
 	file://${MACHINE}/boot.cmd \
 	file://${MACHINE}/uEnv.txt \
-	file://${MACHINE}/idbloader.img \
-	file://${MACHINE}/u-boot.itb \
 "
 
 SRCREV = "693c4cd017e57a6af8e471494be5e8780c041b08"

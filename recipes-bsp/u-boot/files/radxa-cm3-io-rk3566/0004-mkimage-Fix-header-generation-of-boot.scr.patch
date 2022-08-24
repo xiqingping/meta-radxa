@@ -1,0 +1,32 @@
+From 8af20177a3953f0c317158d6335117ddac692e4e Mon Sep 17 00:00:00 2001
+From: Florin Sarbu <florin@balena.io>
+Date: Wed, 24 Aug 2022 16:21:32 +0200
+Subject: [PATCH] mkimage: Fix header generation of boot.scr
+
+This fixes an issue with generating boot.scr with the wrong headers:
+
+Found U-Boot script /boot/boot.scr
+2287 bytes read in 321 ms (6.8 KiB/s)
+SCRIPT FAILED: continuing...
+
+Signed-off-by: Florin Sarbu <florin@balena.io>
+---
+ tools/mkimage.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/tools/mkimage.c b/tools/mkimage.c
+index 10c1d33950..85948720c9 100644
+--- a/tools/mkimage.c
++++ b/tools/mkimage.c
+@@ -486,7 +486,7 @@ int main(int argc, char **argv)
+ 					}
+ 					size = cpu_to_uimage (sbuf.st_size);
+ 				} else {
+-					size = IMAGE_PARAM_INVAL;
++					size = 0;
+ 				}
+ 
+ 				if (write(ifd, (char *)&size, sizeof(size)) != sizeof(size)) {
+-- 
+2.37.2
+

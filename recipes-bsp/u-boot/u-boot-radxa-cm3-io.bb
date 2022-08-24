@@ -11,6 +11,8 @@ SRC_URI = " \
 	file://0002-Suppress-maybe-uninitialized-warning.patch \
 	file://0003_Fix-failed_to_create_atf.patch \
 	file://${MACHINE}/0001-to-avoid-warnings-when-compiling-with-GCC-8.1.patch \
+	file://${MACHINE}/0002-fs-ext4-cache-extent-data.patch \
+	file://${MACHINE}/0003-fs-ext4-Fix-alignment-of-cache-buffers.patch \
 	file://${MACHINE}/boot.cmd \
 	file://${MACHINE}/uEnv.txt \
 "

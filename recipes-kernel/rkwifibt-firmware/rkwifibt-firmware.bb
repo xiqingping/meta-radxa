@@ -33,8 +33,9 @@ do_install() {
 		-t ${D}/lib/firmware/brcm/
 
 	# let's use the firmware for AP6212 from Infineon / Cypress
-	install -d ${D}/lib/firmware/cypress/
-	install -m 0644 ${S}/firmware/cypress/wifi/* -t ${D}/lib/firmware/cypress/
+	install -m 0644 ${S}/firmware/cypress/wifi/cyfmac43430-sdio.bin ${D}/lib/firmware/brcm/brcmfmac43430-sdio.bin
+	install -m 0644 ${S}/firmware/cypress/wifi/cyfmac43430-sdio.txt ${D}/lib/firmware/brcm/brcmfmac43430-sdio.txt
+	install -m 0644 ${S}/firmware/cypress/wifi/cyfmac43430-sdio.clm_blob ${D}/lib/firmware/brcm/brcmfmac43430-sdio.clm_blob
 
 	install -d ${D}${base_libdir}/firmware/rtlbt/
 	install -m 0644 ${S}/realtek/RTL8723DS/* -t ${D}${base_libdir}/firmware/rtlbt/
@@ -61,7 +62,7 @@ PACKAGES =+ " \
 "
 
 FILES_${PN}-ap6212a1-wifi = " \
-	lib/firmware/cypress/* \
+	lib/firmware/brcm/brcmfmac43430-sdio* \
 "
 
 FILES_${PN}-ap6212a1-bt = " \

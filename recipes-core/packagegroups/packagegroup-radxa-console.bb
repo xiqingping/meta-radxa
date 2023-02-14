@@ -9,8 +9,6 @@ RDEPENDS_packagegroup-radxa-console = "\
     alsa-utils-aplay \
     coreutils \
     cpufrequtils \
-    gnupg \
-    hostapd \
     htop \
     iptables \
     iproute2 \
@@ -18,12 +16,29 @@ RDEPENDS_packagegroup-radxa-console = "\
     networkmanager \
     networkmanager-nmtui \
     openssh-sftp-server \
-    bluez5 \
-    dialog \
-    i2c-tools \
     sudo \
     net-tools \
     findutils \
-    mraa-radxa-dev \
-    mraa-radxa-utils \
     "
+#RDEPENDS_packagegroup-radxa-console = "\
+#    alsa-utils-aplay \
+#    coreutils \
+#    cpufrequtils \
+#    gnupg \
+#    hostapd \
+#    htop \
+#    iptables \
+#    iproute2 \
+#    kernel-modules \
+#    networkmanager \
+#    networkmanager-nmtui \
+#    openssh-sftp-server \
+#    bluez5 \
+#    dialog \
+#    i2c-tools \
+#    sudo \
+#    net-tools \
+#    findutils \
+#    mraa-radxa-dev \
+#    mraa-radxa-utils \
+#    "

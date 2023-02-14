@@ -13,5 +13,6 @@ CORE_IMAGE_BASE_INSTALL += " \
     kernel-modules \
 "
 
-EXTRA_USERS_PARAMS = "usermod -P rock root;"
-EXTRA_USERS_PARAMS += "useradd -P rock rock;"
+#EXTRA_USERS_PARAMS ?= " \
+#    usermod -p rock root; \
+#"

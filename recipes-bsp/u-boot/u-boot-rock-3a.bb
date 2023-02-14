@@ -37,17 +37,18 @@ do_configure () {
     fi
 }
 
-do_compile_prepend () {
+do_compile:prepend () {
 	export STAGING_INCDIR=${STAGING_INCDIR_NATIVE};
 	export STAGING_LIBDIR=${STAGING_LIBDIR_NATIVE};
+    sed -i -e 's;if (!priv || !&priv->clk);if (!priv);g' ${S}/drivers/mmc/rockchip_dw_mmc.c
 }
 
-do_compile_append () {
+do_compile:append () {
 	oe_runmake -C ${S} O=${B}/${config} BL31=${DEPLOY_DIR_IMAGE}/radxa-binary/bl31.elf spl/u-boot-spl.bin u-boot.dtb u-boot.itb
 	./tools/mkimage -n rk3568 -T rksd -d ${DEPLOY_DIR_IMAGE}/radxa-binary/ddr.bin:spl/u-boot-spl.bin ${DEPLOY_DIR_IMAGE}/idbloader.img
 }
 
-do_deploy_append() {
+do_deploy:append() {
 	install -D -m 644 ${B}/u-boot.itb ${DEPLOYDIR}/
 }
 
